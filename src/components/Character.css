@@ -20,32 +20,6 @@
   background: whitesmoke; 
 }
 
-.select-characters {
-  border: none;
-  height: 4rem;
-  width: 15rem;
-  margin-left: auto;
-  margin: 0.5rem 2rem 0.5rem auto;
-  padding: 2px;
-  padding-left: .75rem;
-  padding-right: .75rem;
-  background-color: #689cc5;
-  color: black;
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 10px;
-  white-space: nowrap;
-  /* @include small-screen {
-    margin: 0;
-    margin-bottom: 0.5rem;
-    height: 2rem;
-  } */
-}
-
-.arrow-down-emoji {
-  font-size: 14px;
-}
-
 /*------------- START CHECKBOX FORM ----------------- */
 
 .checkbox-form {

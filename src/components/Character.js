@@ -1,26 +1,17 @@
 import React from 'react';
 import CharacterCards from './CharacterCards';
+import CharacterButton from './CharacterButton.js';
 import './Character.css';
 
 const Character = () => {
-  function buttonOnClick() {
-    console.log('yes');
-  }
+
 
   return (
     <div>
       <div className='character-nav'>
         <h1 className='detail-text'>Character Details</h1>
         {/* <button className='character-button' onClick={buttonOnClick}>x</button> */}
-        <button 
-          className='select-characters' 
-          id='selectCharacters' 
-          aria-haspopup="true" 
-          aria-expanded='false' 
-          onClick={buttonOnClick}
-          >Character Menu 
-          <span className='arrow-down-emoji'>▼</span>
-        </button>
+        <CharacterButton />
         <div className="arrow-up hidden" id='checkboxArrow'></div>
           {/* <form className='checkbox-form hidden' id='checkboxMenu'>
             <div className='search-bar'>
