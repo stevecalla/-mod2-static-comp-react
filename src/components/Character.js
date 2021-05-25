@@ -13,7 +13,7 @@ const Character = () => {
         Character Details
         <button className='character-button' onClick={buttonOnClick}>x</button>
       </div>
-      <div className='character-containter'>
+      <div>
         <CharacterCards />
       </div>
     </div>

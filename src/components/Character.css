@@ -1,24 +1,13 @@
 .character-nav {
-  border: .25em red solid;
+  /* border: .25em red solid; */
   display: flex;
   justify-content: space-between;
   align-content: center;
-  height: 15vh;
+  height: 10vh;
   width: 100%;
 }
 
 .character-button {
   height: 5vh;
   width: 10vw;
-}
-
-.character-containter {
-  border: .25em red solid;
-  display: flex;
-  justify-content: space-around;
-  align-content: center;
-  height: 55vh;
-  width: 100%;
-  /* margin: 1rem; */
-  overflow: auto;
 }

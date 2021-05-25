@@ -6,18 +6,15 @@
   flex-wrap: wrap;
   height: 66vh;
   overflow: scroll;
-  /* @include small-screen {
-    height: 60vh;
-  } */
 }
 
 .character-box {
   border: .01em solid black;
-  @include flexColumn;
+  /* @include flexColumn; */
   height: 425px;
   width: 325px;
   margin: 1vh;
-  background: variables.$background-character-box;
+  /* background: variables.$background-character-box; */
   box-shadow: 5px 0px 5px gray;
   overflow: scroll;
   position: relative;
@@ -40,7 +37,7 @@
 .arrow-image {
   height: 10vh;
   width: 10vh;
-  background-color: variables.$text-color;
+  /* background-color: variables.$text-color; */
 }
 
 .container-image {
@@ -76,8 +73,8 @@
   margin: 1vh 1.5vh 1vh 1.7vh;
   text-align: center;
   font-size: 20px;
-  background: variables.$background-character-box;
-  background-color: variables.$background-character-box;
+  /* background: variables.$background-character-box; */
+  /* background-color: variables.$background-character-box; */
   text-decoration: none;
 }
 
@@ -86,11 +83,11 @@
 }
 
 .detail-text {
-  @include small-screen {
+  /* @include small-screen {
     margin: 0;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-  }
+  } */
 }
 
 /*------------- END CHARACTER BOXES ----------------- */
