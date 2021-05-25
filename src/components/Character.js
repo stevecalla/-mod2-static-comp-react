@@ -1,10 +1,23 @@
 import React from 'react';
 import './Character.css';
+import CharacterCards from './CharacterCards';
 
-const Char (= () => {
+const Character = () => {
+  function buttonOnClick() {
+    console.log('yes');
+  }
+
   return (
     <div>
-      Hello
+      <div className='character-nav'>
+        Character Details
+        <button className='character-button' onClick={buttonOnClick}>x</button>
+      </div>
+      <div className='character-containter'>
+        <CharacterCards />
+      </div>
     </div>
   )
 }
+
+export default Character;

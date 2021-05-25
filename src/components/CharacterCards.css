@@ -1,0 +1,96 @@
+/*------------- START CHARACTER BOXES ----------------- */
+
+.character-boxes {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 66vh;
+  overflow: scroll;
+  /* @include small-screen {
+    height: 60vh;
+  } */
+}
+
+.character-box {
+  border: .01em solid black;
+  @include flexColumn;
+  height: 425px;
+  width: 325px;
+  margin: 1vh;
+  background: variables.$background-character-box;
+  box-shadow: 5px 0px 5px gray;
+  overflow: scroll;
+  position: relative;
+  /* // transition: all 0.5s ease; */
+}
+
+.character-box:hover {
+  color: black;
+  background-color: #689cc5;
+}
+
+.tint-overlay {
+  background-color: rgba(0,0,0,.3);
+  height: 25vh;
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
+.arrow-image {
+  height: 10vh;
+  width: 10vh;
+  background-color: variables.$text-color;
+}
+
+.container-image {
+  height: 25vh;
+  width: 100%;
+  z-index: 1;
+}
+
+.name-text, 
+.description-text,
+.count-text {
+  margin-left: 1.5vh;
+  margin: .25vh 1.5vh .25vh 1.5vh; 
+  text-align: center;
+}
+
+.name-text {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.description-text {
+  font-style: italic;
+}
+
+.count-text {
+  font-weight: bold;
+}
+
+.url-box {
+  border: 0.1rem solid black;
+  height: 5vh;
+  margin: 1vh 1.5vh 1vh 1.7vh;
+  text-align: center;
+  font-size: 20px;
+  background: variables.$background-character-box;
+  background-color: variables.$background-character-box;
+  text-decoration: none;
+}
+
+.url-box:hover {
+  cursor: pointer;
+}
+
+.detail-text {
+  @include small-screen {
+    margin: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/*------------- END CHARACTER BOXES ----------------- */
