@@ -1,0 +1,12 @@
+.headerbar {
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  width: 100vw;
+  margin-bottom: 15px;
+  text-align: center;
+  color: whitesmoke;
+  font-size: 30px;
+}
