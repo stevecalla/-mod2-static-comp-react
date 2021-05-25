@@ -1,4 +1,4 @@
-@import-normalize; 
+/* @import-normalize;  */
 /* bring in normalize.css styles */
 
 body,
@@ -8,4 +8,5 @@ html {
   width: 100vw;
   overflow:hidden;
   box-sizing: border-box;
+  font-family: sans-serif, "Roboto";
 }
