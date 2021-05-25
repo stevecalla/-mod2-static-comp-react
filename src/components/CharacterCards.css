@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  height: 66vh;
+  height: 65vh;
   overflow: scroll;
 }
 

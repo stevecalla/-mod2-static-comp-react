@@ -7,7 +7,7 @@ import library from './assets/library.png';
 const Header = () => {
   return (
     <header className='headerbar'>
-      <h1>Marvel Comics</h1>
+      <h1 className="page-header">Marvel Comics</h1>
       <div className='nav-bar'>
         <img className='todo-icon nav-icon' loading='lazy' src={todolist} width="25" height="25" alt='Icon for list of marvel characters link' />      
         <a className='nav-links' href="https://www.marvel.com/characters" target="_blank" rel="noreferrer" aria-label='Link to Marvel comic characters'>CHARACTERS</a>
