@@ -28,7 +28,7 @@
   justify-content: space-between;
   height: 350px;
   width: 300px;
-  background-color: variables.$text-color;
+  /* background-color: variables.$text-color; */
   color: white;
   color: black;
   font-size: 16px;
@@ -51,7 +51,7 @@
   border-left: 12px solid transparent;
   margin-top: .5rem;
   border-right: 12px solid transparent;
-  border-bottom: 12px solid variables.$text-color;
+  /* border-bottom: 12px solid variables.$text-color; */
   position: absolute;
   z-index: 4;
   right: 40px;

@@ -10,10 +10,9 @@ const Character = () => {
     <div>
       <div className='character-nav'>
         <h1 className='detail-text'>Character Details</h1>
-        {/* <button className='character-button' onClick={buttonOnClick}>x</button> */}
         <CharacterButton />
         <div className="arrow-up hidden" id='checkboxArrow'></div>
-          {/* <form className='checkbox-form hidden' id='checkboxMenu'>
+          <form className='checkbox-form hidden' id='checkboxMenu'>
             <div className='search-bar'>
               <img className='search-icon' loading='lazy' src='./assets/magnify-1.1s-200px.png' alt='Search icon'/>
               <input type="text" placeholder="Search All" className="search-input" id="searchInput" spellCheck='true' title='Searchbox'></input>
@@ -28,12 +27,14 @@ const Character = () => {
             <fieldset className='character-checkbox'>
               <legend></legend>
               <div id='populateCheckbox'></div>
-              <a id='load-more' href="#">Load 10 More</a>
+              {/* <a id='load-more' href="#">Load 10 More</a> */}
+              {/* <button onClick={foo}>Perform action</button> */}
+              <button>Load 10 More</button>
             </fieldset>
             <div>
               <button type="submit" className='submit-button' id="submitButton">Submit Form</button>
             </div>
-          </form> */}
+          </form>
       </div>
       <div>
         <CharacterCards />
