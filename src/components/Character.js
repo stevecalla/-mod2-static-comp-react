@@ -1,6 +1,6 @@
 import React from 'react';
 import CharacterCards from './CharacterCards';
-import CharacterButton from './CharacterButton.js';
+// import CharacterButton from './CharacterButton.js';
 import CharacterCheckboxes from './CharacterCheckboxes.js';
 
 // import characters from '../data.js';
@@ -17,7 +17,7 @@ const Character = () => {
     <div>
       <div className='character-nav'>
         <h1 className='detail-text'>Character Details</h1>
-        <CharacterButton />
+        {/* <CharacterButton /> */}
         <CharacterCheckboxes />
       </div>
       <div>

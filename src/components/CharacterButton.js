@@ -1,25 +1,25 @@
-import React from 'react';
-import './CharacterButton.css';
+// import React from 'react';
+// import './CharacterButton.css';
 
-const CharacterButton = () => {
+// const CharacterButton = () => {
 
-  function buttonOnClick() {
-    console.log('yes');
-  }
+//   function buttonOnClick() {
+//     console.log('yes');
+//   }
 
-  return (
-    <>
-      <button 
-        className='select-characters-button' 
-        id='selectCharacters' 
-        aria-haspopup="true" 
-        aria-expanded='false' 
-        onClick={buttonOnClick}
-        >Character Menu 
-        <span className='arrow-down-emoji'>  ▼</span>
-      </button>
-    </>
-  )
-}
+//   return (
+//     <>
+//       <button 
+//         className='select-characters-button' 
+//         id='selectCharacters' 
+//         aria-haspopup="true" 
+//         aria-expanded='false' 
+//         onClick={buttonOnClick}
+//         >Character Menu 
+//         <span className='arrow-down-emoji'> ▼</span>
+//       </button>
+//     </>
+//   )
+// }
 
-export default CharacterButton;
+// export default CharacterButton;
