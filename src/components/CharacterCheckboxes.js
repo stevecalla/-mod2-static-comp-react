@@ -38,15 +38,15 @@ const [ value, setValue ] = useState(true)
 // functions below
 function toggleCharacterMenu() {
   count = 10;
-  // showToggle(renderCheckBoxMenu);
-  // showToggle(renderCheckBoxArrow);
-  // showToggle(randomCheckboxWrapper);
+  // showToggle(renderCheckBoxMenu); //uses setValue below w/ inline ternary
+  // showToggle(renderCheckBoxArrow); //uses setValue below w/ inline ternary
+  // showToggle(randomCheckboxWrapper); //uses setValue below w/ inline ternary
+  // hide(clearIcon); //uses setValue below w/ inline ternary
       setValue(prevValue => prevValue ? false : true)
       console.log(value);
   // randomCheckbox.checked = false; //fix
   // createCharacterCheckboxList(characters, count); //fix
   // getSearchBoxInput.value = ''; //fix
-  // hide(clearIcon); //fix
   // buttonExpandedAccessibilityToggle(); //fix
 }
 
@@ -111,15 +111,12 @@ function hide(element) {
       </button>
     
       <div className={`arrow-up ${value ? 'hidden' : ''}`} id='checkboxArrow'></div>
-      {/* <div className="arrow-up hidden" id='checkboxArrow'></div> */}
-        {/* <form className='checkbox-form ' id='checkboxMenu'> */}
         <form className={`checkbox-form ${value ? 'hidden' : ''}`} id='checkboxMenu'>
-        {/* <form className='checkbox-form hidden' id='checkboxMenu'> */}
           <div className='search-bar'>
             <img className='search-icon' loading='lazy' src={magnify} alt='Search icon'/>
             <input type="text" placeholder="Search All" className="search-input" id="searchInput" spellCheck='true' title='Searchbox'></input>
             <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
-            <img className='clear-icon hidden' loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
+            <img className={`clear-icon ${value ? '' : 'hidden'}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
           </div>
           <fieldset className={`random-checkbox ${value ? 'hidden' : ''}`} id='randomCheckboxWrapper'>
             <legend></legend>
