@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import CharacterButton from './CharacterButton';
 import './Character.css';
 import './CharacterButton.css';
@@ -27,21 +27,27 @@ const randomCheckboxWrapper = document.querySelector('#randomCheckboxWrapper');
 // selectCharacters.addEventListener('click', toggleCharacterMenu);
 // loadMore.addEventListener('click', loadMoreCharacters);
 
+
+const [ value, setValue ] = useState(true)
+
+// function increment() {
+//     setValue(prevValue => prevValue ? false : true)
+//     console.log(value);
+// }
+
 // functions below
 function toggleCharacterMenu() {
-  // count ++;
-  // console.log(count);
   count = 10;
-  showToggle(renderCheckBoxMenu);
-  showToggle(renderCheckBoxArrow);
-  showToggle(randomCheckboxWrapper);
-  randomCheckbox.checked = false;
-  createCharacterCheckboxList(characters, count);
-  // loadMoreCharacters(num);
-  getSearchBoxInput.value = '';
-  hide(clearIcon);
-  // loadSelectCharacterMenu();
-  // buttonExpandedAccessibilityToggle();
+  // showToggle(renderCheckBoxMenu);
+  // showToggle(renderCheckBoxArrow);
+  // showToggle(randomCheckboxWrapper);
+      setValue(prevValue => prevValue ? false : true)
+      console.log(value);
+  // randomCheckbox.checked = false; //fix
+  // createCharacterCheckboxList(characters, count); //fix
+  // getSearchBoxInput.value = ''; //fix
+  // hide(clearIcon); //fix
+  // buttonExpandedAccessibilityToggle(); //fix
 }
 
 function loadMoreCharacters() {
@@ -99,13 +105,15 @@ function hide(element) {
         aria-haspopup="true" 
         aria-expanded='false' 
         onClick={toggleCharacterMenu}
+        // onClick={increment}
         >Character Menu 
         <span className='arrow-down-emoji'>  ▼</span>
       </button>
     
-      <div className="arrow-up" id='checkboxArrow'></div>
+      <div className={`arrow-up ${value ? 'hidden' : ''}`} id='checkboxArrow'></div>
       {/* <div className="arrow-up hidden" id='checkboxArrow'></div> */}
-        <form className='checkbox-form' id='checkboxMenu'>
+        {/* <form className='checkbox-form ' id='checkboxMenu'> */}
+        <form className={`checkbox-form ${value ? 'hidden' : ''}`} id='checkboxMenu'>
         {/* <form className='checkbox-form hidden' id='checkboxMenu'> */}
           <div className='search-bar'>
             <img className='search-icon' loading='lazy' src={magnify} alt='Search icon'/>
@@ -113,7 +121,7 @@ function hide(element) {
             <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
             <img className='clear-icon hidden' loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
           </div>
-          <fieldset className='random-checkbox' id='randomCheckboxWrapper'>
+          <fieldset className={`random-checkbox ${value ? 'hidden' : ''}`} id='randomCheckboxWrapper'>
             <legend></legend>
             <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters'></input>
             <label htmlFor='randomCheckbox' id='randomNumberText'>Get 8 Random Characters</label>
