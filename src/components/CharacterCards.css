@@ -93,4 +93,13 @@
   } */
 }
 
+@media screen and (max-width: 640px) { 
+  .detail-text {
+    margin: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+}
+
 /*------------- END CHARACTER BOXES ----------------- */

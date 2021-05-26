@@ -41,7 +41,7 @@ h1 {
 }
 
 @media screen and (max-width: 640px) { 
-  h1 {
+  .page-header {
     /* color: red; */
     font-size: 1.5em;
   }

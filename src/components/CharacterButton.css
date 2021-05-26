@@ -20,6 +20,14 @@
   } */
 }
 
+@media screen and (max-width: 640px) {
+  .select-characters-button {
+      margin: 0;
+      margin-bottom: 0.5rem;
+      height: 2rem;
+  }
+}
+
 .arrow-down-emoji {
   font-size: 14px;
 }

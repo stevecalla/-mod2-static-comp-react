@@ -14,6 +14,19 @@
   width: 10vw;
 }
 
+
+@media screen and (max-width: 640px) { 
+  .character-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 15vh;
+    /* align-items: center; */
+    margin: 0;
+    /* text-align: center; */
+  }
+}
+
 /* ---------------- MAIN --------------- */
 .main-wrappper {
   /* @include flexColumn; */
