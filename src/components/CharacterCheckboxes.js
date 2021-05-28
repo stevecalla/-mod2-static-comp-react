@@ -27,7 +27,6 @@ const randomCheckboxWrapper = document.querySelector('#randomCheckboxWrapper');
 // selectCharacters.addEventListener('click', toggleCharacterMenu);
 // loadMore.addEventListener('click', loadMoreCharacters);
 
-
 const [ value, setValue ] = useState(true)
 
 // function increment() {
@@ -42,12 +41,25 @@ function toggleCharacterMenu() {
   // showToggle(renderCheckBoxArrow); //uses setValue below w/ inline ternary
   // showToggle(randomCheckboxWrapper); //uses setValue below w/ inline ternary
   // hide(clearIcon); //uses setValue below w/ inline ternary
-      setValue(prevValue => prevValue ? false : true)
-      console.log(value);
+  setValue(prevValue => prevValue ? false : true)
+  console.log(value);
+  // randomCheckbox.checked = false; //fix
   // randomCheckbox.checked = false; //fix
   // createCharacterCheckboxList(characters, count); //fix
   // getSearchBoxInput.value = ''; //fix
   // buttonExpandedAccessibilityToggle(); //fix
+}
+
+function showToggle() {
+  return value ? 'hidden' : '';
+}
+
+function hideToggle() {
+  return value ? '' : 'hidden';
+}
+
+function checkedToggle() {
+  return value ? 'checked' : '';
 }
 
 function loadMoreCharacters() {
@@ -88,13 +100,13 @@ function renderDropdownList(currentCharacterDropDownList) {
 //   }
 // }
 
-function showToggle(element) {
-  element.classList.toggle('show');
-}
+// function showToggle(element) {
+//   element.classList.toggle('show');
+// }
 
-function hide(element) {
-  element.classList.add('hidden');
-}
+// function hide(element) {
+//   element.classList.add('hidden');
+// }
 
   return (
     <>
@@ -110,16 +122,17 @@ function hide(element) {
         <span className='arrow-down-emoji'>  ▼</span>
       </button>
     
-      <div className={`arrow-up ${value ? 'hidden' : ''}`} id='checkboxArrow'></div>
-        <form className={`checkbox-form ${value ? 'hidden' : ''}`} id='checkboxMenu'>
+      <div className={`arrow-up ${showToggle()}`} id='checkboxArrow'></div>
+        <form className={`checkbox-form ${showToggle()}`} id='checkboxMenu'>
           <div className='search-bar'>
             <img className='search-icon' loading='lazy' src={magnify} alt='Search icon'/>
             <input type="text" placeholder="Search All" className="search-input" id="searchInput" spellCheck='true' title='Searchbox'></input>
             <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
-            <img className={`clear-icon ${value ? '' : 'hidden'}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
+            <img className={`clear-icon ${hideToggle()}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
           </div>
-          <fieldset className={`random-checkbox ${value ? 'hidden' : ''}`} id='randomCheckboxWrapper'>
+          <fieldset className={`random-checkbox ${showToggle()}`} id='randomCheckboxWrapper'>
             <legend></legend>
+            {/* <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters' checked={`random-checkbox ${checkedToggle()}`}></input> */}
             <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters'></input>
             <label htmlFor='randomCheckbox' id='randomNumberText'>Get 8 Random Characters</label>
           </fieldset>
