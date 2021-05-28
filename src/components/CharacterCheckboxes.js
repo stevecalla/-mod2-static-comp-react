@@ -36,7 +36,7 @@ const [ test200 ] = useState(false);
 // }
 
 // functions below
-function toggleCharacterMenu() {
+function toggleCharacterMenu(event) {
   count = 3;
   // showToggle(renderCheckBoxMenu); //uses setValue below w/ inline ternary
   // showToggle(renderCheckBoxArrow); //uses setValue below w/ inline ternary
@@ -44,6 +44,7 @@ function toggleCharacterMenu() {
   // hide(clearIcon); //uses setValue below w/ inline ternary
   setValue(prevValue => prevValue ? false : true)
   console.log(value);
+  loadMoreCharacters(event);
   // randomCheckbox.checked = false; //fix
   // randomCheckbox.checked = false; //fix
   // createCharacterCheckboxList(characters, count); //fix
@@ -72,7 +73,7 @@ function loadMoreCharacters(event) {
   // console.log('z=', count);
   count = count + 10;
   // console.log('t=', count);
-  createCharacterCheckboxList(characters, count);
+  if (populateCheckboxList) {createCharacterCheckboxList(characters, count)};
 }
 
 function createCharacterCheckboxList(currentCharacters, count) {
