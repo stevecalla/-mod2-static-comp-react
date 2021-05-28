@@ -27,7 +27,8 @@ const randomCheckboxWrapper = document.querySelector('#randomCheckboxWrapper');
 // selectCharacters.addEventListener('click', toggleCharacterMenu);
 // loadMore.addEventListener('click', loadMoreCharacters);
 
-const [ value, setValue ] = useState(true)
+const [ value, setValue ] = useState(true);
+const [ test200 ] = useState(false);
 
 // function increment() {
 //     setValue(prevValue => prevValue ? false : true)
@@ -59,7 +60,11 @@ function hideToggle() {
 }
 
 function checkedToggle() {
-  return value ? 'checked' : '';
+  console.log('test');
+  console.log(randomCheckbox.value);
+  console.log(randomCheckbox.checked);
+  // return 'checked';
+  // return value ? randomCheckbox.checked = true : randomCheckbox.checked = true;
 }
 
 function loadMoreCharacters() {
@@ -132,7 +137,8 @@ function renderDropdownList(currentCharacterDropDownList) {
           </div>
           <fieldset className={`random-checkbox ${showToggle()}`} id='randomCheckboxWrapper'>
             <legend></legend>
-            {/* <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters' checked={`random-checkbox ${checkedToggle()}`}></input> */}
+            {/* <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters' checked={`random-checkbox ${checkedToggle}`}></input> */}
+            {/* <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters' checked={`random-checkbox ${value ? console.log('y') : console.log('n') }`} onChange={checkedToggle}></input> */}
             <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters'></input>
             <label htmlFor='randomCheckbox' id='randomNumberText'>Get 8 Random Characters</label>
           </fieldset>
