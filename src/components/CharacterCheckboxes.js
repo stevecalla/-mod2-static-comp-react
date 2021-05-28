@@ -12,7 +12,7 @@ import clearXicon from './assets/clearXicon.png';
 const CharacterCheckboxes = () => {
 
 // variables 
-let count = 10;
+let count = 0;
 const populateCheckboxList = document.querySelector('#populateCheckbox');
 // const selectCharacters = document.querySelector('#selectCharacters');
 const renderCheckBoxArrow = document.querySelector('#checkboxArrow');
@@ -28,92 +28,86 @@ const randomCheckboxWrapper = document.querySelector('#randomCheckboxWrapper');
 // loadMore.addEventListener('click', loadMoreCharacters);
 
 const [ value, setValue ] = useState(true);
-const [ test200 ] = useState(false);
-
-// function increment() {
-//     setValue(prevValue => prevValue ? false : true)
-//     console.log(value);
-// }
+// const [ test200 ] = useState(false);
+const [ list, setList ] = useState(['loadCharacters']);
 
 // functions below
-function toggleCharacterMenu(event) {
-  count = 3;
-  // showToggle(renderCheckBoxMenu); //uses setValue below w/ inline ternary
-  // showToggle(renderCheckBoxArrow); //uses setValue below w/ inline ternary
-  // showToggle(randomCheckboxWrapper); //uses setValue below w/ inline ternary
-  // hide(clearIcon); //uses setValue below w/ inline ternary
-  setValue(prevValue => prevValue ? false : true)
-  console.log(value);
-  loadMoreCharacters(event);
-  // randomCheckbox.checked = false; //fix
-  // randomCheckbox.checked = false; //fix
-  // createCharacterCheckboxList(characters, count); //fix
-  // getSearchBoxInput.value = ''; //fix
-  // buttonExpandedAccessibilityToggle(); //fix
-}
-
-function showToggle() {
-  return value ? 'hidden' : '';
-}
-
-function hideToggle() {
-  return value ? '' : 'hidden';
-}
-
-function checkedToggle() {
-  console.log('test');
-  console.log(randomCheckbox.value);
-  console.log(randomCheckbox.checked);
-  // return 'checked';
-  // return value ? randomCheckbox.checked = true : randomCheckbox.checked = true;
-}
-
-function loadMoreCharacters(event) {
-  event.preventDefault();
-  // console.log('z=', count);
-  count = count + 10;
-  // console.log('t=', count);
-  if (populateCheckboxList) {createCharacterCheckboxList(characters, count)};
-}
-
-function createCharacterCheckboxList(currentCharacters, count) {
-  // count ++;
-  // console.log(count);
-  // console.log('b', count);
-  let currentCharacterDropDownList = '';
-  for (let i = 0; i < count; i++) {
-    currentCharacterDropDownList +=
-      `
-      <label>
-        <input loading='lazy' type='checkbox' id='checkBox' value='${currentCharacters[i]}'></input>
-        ${currentCharacters[i]}
-      </label>
-      <br></br>
-      `;
+  function toggleCharacterMenu(event) {
+    count = 0;
+    // showToggle(renderCheckBoxMenu); //uses setValue below w/ inline ternary
+    // showToggle(renderCheckBoxArrow); //uses setValue below w/ inline ternary
+    // showToggle(randomCheckboxWrapper); //uses setValue below w/ inline ternary
+    // hide(clearIcon); //uses setValue below w/ inline ternary
+    setValue(prevValue => prevValue ? false : true)
+    console.log(value);
+    loadCharacters(event);
+    // console.log('a=', list);
+    // setList(prevList => createCharacterCheckboxList(prevList, 1));
+    setList(prevList => value ? ['loadCharacters2'] : ['loadCharacters3'] );
+    console.log('b=', list);
+    // randomCheckbox.checked = false; //fix
+    // randomCheckbox.checked = false; //fix
+    // createCharacterCheckboxList(characters, count); //fix
+    // getSearchBoxInput.value = ''; //fix
+    // buttonExpandedAccessibilityToggle(); //fix
   }
-  renderDropdownList(currentCharacterDropDownList);
-}
 
-function renderDropdownList(currentCharacterDropDownList) {
-  populateCheckboxList.innerHTML = currentCharacterDropDownList;
-}
+  function test2() {
+    return characters;
+  }
 
-// function buttonExpandedAccessibilityToggle() {
-//   // console.log(selectCharacters.getAttribute('aria-expanded'));
-//   if (selectCharacters.getAttribute('aria-expanded') === 'false') {
-//     selectCharacters.setAttribute('aria-expanded', 'true');
-//   } else {
-//     selectCharacters.setAttribute('aria-expanded', 'false');
-//   }
-// }
+  function loadCharacters(event) {
+    event.preventDefault();
+    count = count + 10;
+    if (populateCheckboxList) {createCharacterCheckboxList(characters, count)};
+  }
 
-// function showToggle(element) {
-//   element.classList.toggle('show');
-// }
+  function createCharacterCheckboxList(currentCharacters, count) {
+    // count ++;
+    // console.log(count);
+    // console.log('b', count);
+    let currentCharacterDropDownList = '';
+    for (let i = 0; i < count; i++) {
+      currentCharacterDropDownList +=
+        `
+        <label>
+          <input loading='lazy' type='checkbox' id='checkBox' value='${currentCharacters[i]}'></input>
+          ${currentCharacters[i]}
+        </label>
+        <br></br>
+        `;
+    }
+    renderDropdownList(currentCharacterDropDownList);
+  }
 
-// function hide(element) {
-//   element.classList.add('hidden');
-// }
+  function renderDropdownList(currentCharacterDropDownList) {
+    populateCheckboxList.innerHTML = currentCharacterDropDownList;
+  }
+
+  // function buttonExpandedAccessibilityToggle() {
+  //   // console.log(selectCharacters.getAttribute('aria-expanded'));
+  //   if (selectCharacters.getAttribute('aria-expanded') === 'false') {
+  //     selectCharacters.setAttribute('aria-expanded', 'true');
+  //   } else {
+  //     selectCharacters.setAttribute('aria-expanded', 'false');
+  //   }
+  // }
+
+  function showToggle() {
+    return value ? 'hidden' : '';
+  }
+
+  function hideToggle() {
+    return value ? '' : 'hidden';
+  }
+
+  function checkedToggle() {
+    console.log('test');
+    console.log(randomCheckbox.value);
+    console.log(randomCheckbox.checked);
+    // return 'checked';
+    // return value ? randomCheckbox.checked = true : randomCheckbox.checked = true;
+  }
 
   return (
     <>
@@ -124,7 +118,6 @@ function renderDropdownList(currentCharacterDropDownList) {
         aria-haspopup="true" 
         aria-expanded='false' 
         onClick={toggleCharacterMenu}
-        // onClick={increment}
         >Character Menu 
         <span className='arrow-down-emoji'>  ▼</span>
       </button>
@@ -147,21 +140,10 @@ function renderDropdownList(currentCharacterDropDownList) {
           <fieldset className='character-checkbox'>
             <legend></legend>
             <div id='populateCheckbox'></div>
-            {/* <label>
-              <input loading='lazy' type='checkbox' id='checkBox' value='{characters[0]}'></input>
-              {characters[0]}
-            </label>
-            <br></br>
-
-            <label>
-              <input loading='lazy' type='checkbox' id='checkBox' value='{characters[1]}'></input>
-              {characters[1]}
-            </label>
-            <br></br> */}
-            <br></br>
+            {/* <br></br> */}
             {/* <a id='load-more' href="#">Load 10 More</a> */}
             {/* <button onClick={foo}>Perform action</button> */}
-            <button onClick={loadMoreCharacters}>Load 10 More</button>
+            <button onClick={loadCharacters}>Load 10 More</button>
           </fieldset>
           <div>
             <button type="submit" className='submit-button' id="submitButton">Submit Form</button>
