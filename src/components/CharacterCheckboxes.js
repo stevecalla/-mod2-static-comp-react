@@ -37,7 +37,7 @@ const [ test200 ] = useState(false);
 
 // functions below
 function toggleCharacterMenu() {
-  count = 10;
+  count = 3;
   // showToggle(renderCheckBoxMenu); //uses setValue below w/ inline ternary
   // showToggle(renderCheckBoxArrow); //uses setValue below w/ inline ternary
   // showToggle(randomCheckboxWrapper); //uses setValue below w/ inline ternary
@@ -67,7 +67,8 @@ function checkedToggle() {
   // return value ? randomCheckbox.checked = true : randomCheckbox.checked = true;
 }
 
-function loadMoreCharacters() {
+function loadMoreCharacters(event) {
+  event.preventDefault();
   // console.log('z=', count);
   count = count + 10;
   // console.log('t=', count);
@@ -83,10 +84,10 @@ function createCharacterCheckboxList(currentCharacters, count) {
     currentCharacterDropDownList +=
       `
       <label>
-        <input loading='lazy' type='checkbox' id='checkBox' value='${currentCharacters[i]}'>
+        <input loading='lazy' type='checkbox' id='checkBox' value='${currentCharacters[i]}'></input>
         ${currentCharacters[i]}
       </label>
-      <br>
+      <br></br>
       `;
   }
   renderDropdownList(currentCharacterDropDownList);
@@ -145,12 +146,17 @@ function renderDropdownList(currentCharacterDropDownList) {
           <fieldset className='character-checkbox'>
             <legend></legend>
             <div id='populateCheckbox'></div>
-            <input type='checkbox' id='randomCheckbox' value='{characters[0]}'></input>
-            <label htmlFor='randomCheckbox' id='randomNumberText'>{characters[0]}</label>
+            {/* <label>
+              <input loading='lazy' type='checkbox' id='checkBox' value='{characters[0]}'></input>
+              {characters[0]}
+            </label>
             <br></br>
-            <input type='checkbox' id='randomCheckbox' value='{characters[1]}'></input>
-            <label htmlFor='randomCheckbox' id='randomNumberText'>{characters[1]}</label>
-            <br></br>
+
+            <label>
+              <input loading='lazy' type='checkbox' id='checkBox' value='{characters[1]}'></input>
+              {characters[1]}
+            </label>
+            <br></br> */}
             <br></br>
             {/* <a id='load-more' href="#">Load 10 More</a> */}
             {/* <button onClick={foo}>Perform action</button> */}
