@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 // import TestRender from './TestRender.js';
 import TestMap from './TestMap.js';
 
-import characters3 from '../data.js';
+import characters from '../data.js';
 
 class Test extends Component {
   constructor() {
     super();
     this.state = {
       // test: characters,
-      test: characters3,
+      test: characters,
     }
   }
 

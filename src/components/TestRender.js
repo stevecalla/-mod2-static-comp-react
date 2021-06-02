@@ -6,7 +6,7 @@ const TestRender = (props) => {
     <>
       <label>
           <input loading='lazy' type='checkbox' id='checkBox' value=''></input>
-          {props.title}
+          {props.name}
         </label>
         <br></br>
       {/* <button onClick={(event) => props.testChange(event)}>🗑</button> */}
