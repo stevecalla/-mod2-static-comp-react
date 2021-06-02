@@ -3,6 +3,8 @@ import CharacterCards from './CharacterCards';
 // import CharacterButton from './CharacterButton.js';
 import CharacterCheckboxes from './CharacterCheckboxes.js';
 
+import Test from './Test.js';
+
 // import characters from '../data.js';
 
 // import magnify from './assets/magnify.png';
@@ -19,6 +21,7 @@ const Character = () => {
         <h1 className='detail-text'>Character Details</h1>
         {/* <CharacterButton /> */}
         <CharacterCheckboxes />
+        {/* <Test /> */}
       </div>
       <div>
         <CharacterCards />

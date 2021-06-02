@@ -9,6 +9,8 @@ import characters from '../data.js';
 import magnify from './assets/magnify.png';
 import clearXicon from './assets/clearXicon.png';
 
+import Test from './Test.js';
+
 const CharacterCheckboxes = () => {
 
 // variables 
@@ -39,12 +41,13 @@ const [ list, setList ] = useState(['loadCharacters']);
     // showToggle(randomCheckboxWrapper); //uses setValue below w/ inline ternary
     // hide(clearIcon); //uses setValue below w/ inline ternary
     setValue(prevValue => prevValue ? false : true)
-    console.log(value);
-    loadCharacters(event);
+    // console.log(value);
+    // loadCharacters(event);
     // console.log('a=', list);
     // setList(prevList => createCharacterCheckboxList(prevList, 1));
     setList(prevList => value ? ['loadCharacters2'] : ['loadCharacters3'] );
-    console.log('b=', list);
+    // <Test />
+    // console.log('b=', list);
     // randomCheckbox.checked = false; //fix
     // randomCheckbox.checked = false; //fix
     // createCharacterCheckboxList(characters, count); //fix
@@ -130,20 +133,20 @@ const [ list, setList ] = useState(['loadCharacters']);
             <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
             <img className={`clear-icon ${hideToggle()}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
           </div>
-          <fieldset className={`random-checkbox ${showToggle()}`} id='randomCheckboxWrapper'>
-            <legend></legend>
+          {/* <fieldset className={`random-checkbox ${showToggle()}`} id='randomCheckboxWrapper'>
+            <legend></legend> */}
             {/* <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters' checked={`random-checkbox ${checkedToggle}`}></input> */}
             {/* <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters' checked={`random-checkbox ${value ? console.log('y') : console.log('n') }`} onChange={checkedToggle}></input> */}
-            <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters'></input>
+            {/* <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters'></input>
             <label htmlFor='randomCheckbox' id='randomNumberText'>Get 8 Random Characters</label>
-          </fieldset>
+          </fieldset> */}
           <fieldset className='character-checkbox'>
             <legend></legend>
-            <div id='populateCheckbox'></div>
+            <div id='populateCheckbox'>{<Test />}</div>
             {/* <br></br> */}
             {/* <a id='load-more' href="#">Load 10 More</a> */}
             {/* <button onClick={foo}>Perform action</button> */}
-            <button onClick={loadCharacters}>Load 10 More</button>
+            {/* <button onClick={loadCharacters}>Load 10 More</button> */}
           </fieldset>
           <div>
             <button type="submit" className='submit-button' id="submitButton">Submit Form</button>
