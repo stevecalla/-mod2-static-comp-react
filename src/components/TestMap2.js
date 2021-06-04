@@ -8,7 +8,7 @@ const TestMap2 = (props) => {
 
   // console.log('testmap=', props);
 
-  const ideaCards = characters.map(character => {
+  const cards = characters.map(character => {
     return (
       <CharacterCards
         name={character.name}
@@ -25,7 +25,7 @@ const TestMap2 = (props) => {
 
   return (
     <div className='character-boxes' id='characterBox'>
-      {ideaCards}
+      {cards}
     </div>
   )
 }
