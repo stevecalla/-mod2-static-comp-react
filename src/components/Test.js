@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import TestRender from './TestRender.js';
 import TestMap from './TestMap.js';
+import TestMap2 from './TestMap2.js';
 
 import characters from '../data.js';
 
@@ -30,10 +31,10 @@ class Test extends Component {
 
   render() {
     return (
-      console.log('yes'),
-      console.log(this.state.test),
+      // console.log('yes'),
+      // console.log(this.state.test),
       // <TestRender test2={this.state.test} testChange={this.testChange} /> 
-      <TestMap test2={this.state.test} testChange={this.testChange} /> 
+      <TestMap test2={this.state.test} testChange={this.testChange} />
     )
   }
 }

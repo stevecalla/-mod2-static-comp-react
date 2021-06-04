@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import TestRenderBoxesCheck from './TestRenderBoxesCheck.js';
 
 import characters from '../data.js';
+import CharacterCards from './CharacterCards.js';
 
-const TestMap = (props) => {
+const TestMap2 = (props) => {
 
   // console.log('testmap=', props);
 
-  const ideaCards = props.test2.map(character => {
+  const ideaCards = characters.map(character => {
     return (
-      <TestRenderBoxesCheck
+      <CharacterCards
         name={character.name}
         key={character.id}
         imageURL={character.imageURL}
@@ -23,10 +24,10 @@ const TestMap = (props) => {
   })
 
   return (
-    <div className='ideas-container'>
+    <div className='character-boxes' id='characterBox'>
       {ideaCards}
     </div>
   )
 }
 
-export default TestMap;
+export default TestMap2;

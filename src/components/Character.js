@@ -2,6 +2,7 @@ import React from 'react';
 import CharacterCards from './CharacterCards';
 // import CharacterButton from './CharacterButton.js';
 import CharacterCheckboxes from './CharacterCheckboxes.js';
+import TestMap2 from './TestMap2.js';
 
 import Test from './Test.js';
 
@@ -24,7 +25,8 @@ const Character = () => {
         {/* <Test /> */}
       </div>
       <div>
-        <CharacterCards />
+        {/* <CharacterCards /> */}
+        <TestMap2 />
       </div>
     </div>
   )
