@@ -35,7 +35,6 @@ const CharacterSelection = (props) => {
       <div className={`arrow-up ${showToggle()}`} id='checkboxArrow'></div>
         <form onSubmit={props.handleSubmit}  className={`checkbox-form ${showToggle()}`} id='checkboxMenu'>
 
-
         <div className='search-bar'>
             <img className='search-icon' loading='lazy' src={magnify} alt='Search icon'/>
             <input type="text" placeholder="Search All" className="search-input" id="searchInput" spellCheck='true' title='Searchbox'></input>
@@ -49,7 +48,6 @@ const CharacterSelection = (props) => {
             <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters'></input>
             <label htmlFor='randomCheckbox' id='randomNumberText'>Get 8 Random Characters</label>
           </fieldset>
-
 
           <fieldset className='character-checkbox'>
             <legend></legend>

@@ -1,22 +1,20 @@
 import React from 'react';
+
 import CharacterSelection from './CharacterSelection';
+import CheckboxRender from "./CheckboxRender";
+import CharacterRender from './CharacterRender.js';
 
 import characters from '../data.js';
 import characterList from '../dataCharacters.js';
 
 import './Character.css';
 
-import CheckboxRender from "./CheckboxRender";
-import CharacterRender from './CharacterRender.js';
-
-
 // const Character = () => {
 class Character extends React.Component {
-  constructor(props) {
-    super(props);
-    this.a = props;
+  constructor() {
+    super();
     this.state = {
-      selectedCharacters: props ? characters : props,
+      selectedCharacters: characters,
       checkboxes: characters.reduce(
         (options, option) => ({
           ...options,
@@ -28,7 +26,6 @@ class Character extends React.Component {
     // console.log(characters);
     }
 
-  // console.log(characters[0])
   createCheckboxes = () => characterList.slice(0, 6).map(option => this.createCheckbox(option));
 
   createCheckbox = option => {
@@ -60,7 +57,6 @@ class Character extends React.Component {
 
     console.log(this.state.checkboxes);
   }
-  
   
   handleFormSubmit = formSubmitEvent => {
     formSubmitEvent.preventDefault();
