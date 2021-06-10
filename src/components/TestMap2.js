@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import TestRenderBoxesCheck from './TestRenderBoxesCheck.js';
-
-import characters from '../data.js';
 import CharacterCards from './CharacterCards.js';
 
 const TestMap2 = (props) => {
+  // const TestMap2 = () => {
 
-  // console.log('testmap=', props);
+  console.log('props=', props);
 
-  const cards = characters.map(character => {
+  // const cards = characters.map(character => {
+  const cards = props.card.map(character => {
     return (
       <CharacterCards
         name={character.name}
