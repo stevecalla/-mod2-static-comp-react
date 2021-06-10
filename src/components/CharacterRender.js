@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CharacterCards from './CharacterCards.js';
 
-const TestMap2 = (props) => {
-  // const TestMap2 = () => {
-
+const CharacterRender = (props) => {
   console.log('props=', props);
 
   // const cards = characters.map(character => {
@@ -29,4 +27,4 @@ const TestMap2 = (props) => {
   )
 }
 
-export default TestMap2;
+export default CharacterRender;

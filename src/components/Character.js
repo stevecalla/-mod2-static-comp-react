@@ -1,13 +1,13 @@
 import React from 'react';
-import SelectCharacters from './SelectCharacters';
+import CharacterSelection from './CharacterSelection';
 
 import characters from '../data.js';
 import characterList from '../dataCharacters.js';
 
 import './Character.css';
 
-import TestCheckbox from "./TestCheckbox";
-import TestMap2 from './TestMap2.js';
+import CheckboxRender from "./CheckboxRender";
+import CharacterRender from './CharacterRender.js';
 
 
 // const Character = () => {
@@ -26,8 +26,6 @@ class Character extends React.Component {
         ),
     }
     // console.log(characters);
-    console.log(props);
-    console.log(props === null);
     }
 
   // console.log(characters[0])
@@ -36,7 +34,7 @@ class Character extends React.Component {
   createCheckbox = option => {
     console.log('t=', option);
     return (
-      <TestCheckbox
+      <CheckboxRender
         label={option}
         isSelected={this.state.checkboxes[option]}
         onCheckboxChange={this.handleCheckboxChange}
@@ -75,6 +73,7 @@ class Character extends React.Component {
     .map(checkbox => {
       selectedCheckboxes.push(checkbox);
       console.log('selectedCheckboxes=', selectedCheckboxes);
+      return selectedCheckboxes;
     });
     
     // const filteredCharacters = characters.filter(character => character.name === 'Aaron Stack');
@@ -93,24 +92,9 @@ class Character extends React.Component {
       <div>
         <div className='character-nav'>
           <h1 className='detail-text'>Character Details</h1>
-          <SelectCharacters handleSubmit={this.handleFormSubmit} createCheckboxes={this.createCheckboxes()} />
+          <CharacterSelection handleSubmit={this.handleFormSubmit} createCheckboxes={this.createCheckboxes()} />
         </div>
-
-        {/* <div>
-          <div className={`arrow-up`} id='checkboxArrow'></div>
-          <form onSubmit={this.handleFormSubmit} className={`checkbox-form`} id='checkboxMenu'>
-            <fieldset className='character-checkbox'>
-              <legend></legend>
-              <div id='populateCheckbox'>{this.createCheckboxes()}</div>
-            </fieldset>
-            <div>
-              <button type="submit" className='submit-button' id="submitButton">Submit Form</button>
-            </div>
-          </form>
-        </div> */}
-
-          <TestMap2 card={this.state.selectedCharacters} />
-
+          <CharacterRender card={this.state.selectedCharacters} />
       </div>
     )}
 }

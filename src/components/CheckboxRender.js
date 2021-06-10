@@ -1,6 +1,6 @@
 import React from "react";
 
-const Checkbox = ({ label, isSelected, onCheckboxChange }) => (
+const CheckboxRender = ({ label, isSelected, onCheckboxChange }) => (
   <div className="form-check">
     <label>
       <input
@@ -15,4 +15,4 @@ const Checkbox = ({ label, isSelected, onCheckboxChange }) => (
   </div>
 );
 
-export default Checkbox;
+export default CheckboxRender;
