@@ -11,6 +11,7 @@ const CharacterRender = (props) => {
         name={character.name}
         key={character.id}
         imageURL={character.imageURL}
+        imageExtension="jpg"
         profileURL={character.profileURL}
         comicsURL={character.comicsURL}
         comicsCount={character.comicsCount}
