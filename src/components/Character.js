@@ -82,7 +82,38 @@ class Character extends React.Component {
       selectedCharacters: filteredCharacters,
     }))
   };
-  
+
+  // componentDidMount() {
+  //   this.apiFetch(4);
+  //   // <ApiFetch />
+  // }
+
+  apiFetch = (personId) => {
+    fetch(`https://swapi.dev/api/people/${personId}/`)
+    // .then(response => console.log(response))
+    .then(response => response.json())
+    .then(data => console.log(data, data.name, data.birth_year, data.films[0]))
+    // console.log(response)
+    // .then(data => this.setState({
+    //   character: data,
+    // }))
+  }
+
+  getCharacterDataFromMarvelAPI = (characterName) => {
+    // fetching the data for each character from the marvel api
+    fetch(`https://gateway.marvel.com:443/v1/public/characters?name=${characterName}&limit=1&ts=1&apikey=e2deecaf6c770a3c085bbc7ed4b93986&hash=5f76c2f28fdd90fe55091d98e6de3f43`)
+        .then((response) => response.json())
+        .then((response) => console.log(response))
+        // .then((response) => createCharacterListDetails(response))
+        .then((character) => character);
+  }
+
+  fetchData = () => {
+    console.log('fetch');
+    this.apiFetch(1);
+    this.getCharacterDataFromMarvelAPI('A-Bomb (HAS)')
+  }
+
   render() {
     return (
       <div>
@@ -90,6 +121,8 @@ class Character extends React.Component {
           <h1 className='detail-text'>Character Details</h1>
           <CharacterSelection handleSubmit={this.handleFormSubmit} createCheckboxes={this.createCheckboxes()} />
         </div>
+          {/* <button onClick={this.fetchData(2)}>FETCH</button> */}
+          <button onClick={this.fetchData}>FETCH</button>
           <CharacterRender card={this.state.selectedCharacters} />
       </div>
     )}
