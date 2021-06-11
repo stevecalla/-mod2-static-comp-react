@@ -5,13 +5,13 @@ const CharacterRender = (props) => {
   console.log('props=', props);
 
   // const cards = characters.map(character => {
-  const cards = props.card.map(character => {
+const cards = props.card.map(character => {
     return (
       <CharacterCards
         name={character.name}
         key={character.id}
         imageURL={character.imageURL}
-        imageExtension="jpg"
+        imageExtension='jpg'
         profileURL={character.profileURL}
         comicsURL={character.comicsURL}
         comicsCount={character.comicsCount}

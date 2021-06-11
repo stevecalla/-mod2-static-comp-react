@@ -3,7 +3,7 @@ import './CharacterCards.css';
 
 const CharacterCards = (props) => {
   const image = `${props.imageURL}.${props.imageExtension}`
-  console.log(image);
+  // console.log(image);
 
   return (
     <div key={props.id}>

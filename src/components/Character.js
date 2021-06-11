@@ -24,12 +24,13 @@ class Character extends React.Component {
         ),
     }
     // console.log(characters);
+    this.characters = [];
     }
 
   createCheckboxes = () => characterList.slice(0, 6).map(option => this.createCheckbox(option));
 
   createCheckbox = option => {
-    console.log('t=', option);
+    // console.log('t=', option);
     return (
       <CheckboxRender
         label={option}
@@ -103,7 +104,7 @@ class Character extends React.Component {
     console.log('fetch');
     // this.apiFetch(1);
     this.getCharacterDataFromMarvelAPI('A-Bomb (HAS)')
-    // this.getCharacterDataFromMarvelAPI('3-D Man')
+    this.getCharacterDataFromMarvelAPI('3-D Man')
   }
 
   getCharacterDataFromMarvelAPI = (characterName) => {
@@ -113,24 +114,49 @@ class Character extends React.Component {
         .then((character) => this.createCharacter(character));
   }
 
-  createCharacter = (card) => {
-    console.log(card)
-    const cards = card.data.results.map(character => ({
-      name: character.name,
-      description: character.description,
-      key: character.id,
-      imageURL: character.thumbnail.path,
-      imageExtension: character.thumbnail.extension,
-      profileURL: character.urls[0].url,
-      comicsURL: character.urls[1].url,
-      comicsCount: character.comics.available,
-      storiesCount: character.stories.available,
-    }));
-    console.log('a=', cards);
+  createCharacter = (cards1) => {
+    console.log('cards1=', cards1)
+
+    // cards1.forEach((character) => renderCharacterList.push(character));
+
+    const cards = {
+      name: cards1.data.results[0].name,
+      description: cards1.data.results[0].description,
+      key: cards1.data.results[0].id,
+      imageURL: cards1.data.results[0].thumbnail.path,
+      imageExtension: cards1.data.results[0].thumbnail.extension,
+      profileURL: cards1.data.results[0].urls[0].url,
+      comicsURL: cards1.data.results[0].urls[1].url,
+      comicsCount: cards1.data.results[0].comics.available,
+      storiesCount: cards1.data.results[0].stories.available,
+    };
+
+    console.log('test2=', cards);
+    this.characters.push(cards);
+    console.log('this.test=', this.characters);
+    
+    // const cards2 = cards1.data.results.map(character => ({
+    //   name: character.name,
+    //   description: character.description,
+    //   key: character.id,
+    //   imageURL: character.thumbnail.path,
+    //   imageExtension: character.thumbnail.extension,
+    //   profileURL: character.urls[0].url,
+    //   comicsURL: character.urls[1].url,
+    //   comicsCount: character.comics.available,
+    //   storiesCount: character.stories.available,
+    // }));
+    // console.log('a=', cards2);
+
+    // let card = [];
+    // card = card.push(cards2);
 
     this.setState(prevState => ({
-      selectedCharacters: cards,
+      // selectedCharacters: cards2,
+      selectedCharacters: this.characters,
     }))
+
+    console.log('this.state.selectedCharacters=', this.state.selectedCharacters);
 
   }
 
