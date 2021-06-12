@@ -14,7 +14,7 @@ class Character extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedCharacters: characters,
+      selectedCharacters: [],
       checkboxes: characters.reduce(
         (options, option) => ({
           ...options,
@@ -93,10 +93,32 @@ class Character extends React.Component {
     }))
   };
 
-  // componentDidMount() {
-  //   this.apiFetch(4);
-  //   // <ApiFetch />
-  // }
+  componentDidMount() {
+    const randomCount = 2;
+    const randomNumbers = [];
+    const randomCharacters = [];
+
+    //generate array of random numbers from index
+    for (let i = 0; i < randomCount; i++) {
+      // randomNumbers.push(Math.floor(Math.floor(Math.random()*characters.length))); //todo use static data
+      randomNumbers.push(Math.floor(Math.floor(Math.random()*characterList.length))); //todo use api
+    };
+    console.log(randomNumbers);
+
+    //use random numbers to create array of character names
+    // randomNumbers.forEach((number) => randomCharacters.push(characters[number])); //todo use static data
+    randomNumbers.forEach((number) => randomCharacters.push(characterList[number])); //todo use api
+    console.log(randomCharacters);
+
+    //submit character names to the api to get data and render
+    randomCharacters.map(character => this.getCharacterDataFromMarvelAPI(character)) //todo use api
+
+    this.setState(prevState => ({
+        selectedCharacters: randomCharacters,
+      }))
+    // this.apiFetch(4);
+    // <ApiFetch />
+  }
 
   // apiFetch = (personId) => {
   //   fetch(`https://swapi.dev/api/people/${personId}/`)
