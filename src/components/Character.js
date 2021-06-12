@@ -27,7 +27,7 @@ class Character extends React.Component {
     this.characters = [];
     }
 
-  createCheckboxes = () => characterList.slice(0, 6).map(option => this.createCheckbox(option));
+  createCheckboxes = () => characterList.slice(0, 10).map(option => this.createCheckbox(option));
 
   createCheckbox = option => {
     // console.log('t=', option);
@@ -43,26 +43,30 @@ class Character extends React.Component {
   }
 
   handleCheckboxChange = (event) => {
-    const filteredCharacters = characters.filter(character => character.name === event.target.name);
-    // const prq = [this.state.selectedCharacters[0]];
-    const { name } = event.target;
+    // const filteredCharacters = characters.filter(character => character.name === event.target.name); //todo comment out to use api
+    const { name } = event.target; //todo need if using data.js
+
+    // console.log('u=', event.target.name)
+    // console.log('t=', filteredCharacters);
+
+    // const filteredCharacters = this.getCharacterDataFromMarvelAPI(event.target.name, name); //todo un-comment to use api
 
     this.setState(prevState => ({
-      // selectedCharacters: prq,
-      selectedCharacters: filteredCharacters,
+      // selectedCharacters: filteredCharacters, //todo comment out to use api
       checkboxes: {
         ...prevState.checkboxes,
         [name]: !prevState.checkboxes[name]
       }
     }));
-
-    console.log(this.state.checkboxes);
+    
+    console.log('v=', this.state.checkboxes);
   }
   
   handleFormSubmit = formSubmitEvent => {
     formSubmitEvent.preventDefault();
     console.log('abcv1=', this.state.selectedCharacters);
     // console.log('keys=', Object.keys(this.state.checkboxes))
+    this.characters = [];
     const selectedCheckboxes = [];
     
     Object.keys(this.state.checkboxes)
@@ -72,15 +76,20 @@ class Character extends React.Component {
       console.log('selectedCheckboxes=', selectedCheckboxes);
       return selectedCheckboxes;
     });
+    console.log(selectedCheckboxes);
     
+    //use API
+    selectedCheckboxes.map(character => this.getCharacterDataFromMarvelAPI(character))
+    
+    //use data.js
     // const filteredCharacters = characters.filter(character => character.name === 'Aaron Stack');
     // const filteredCharacters = characters.filter(character => character.name.includes('Aaron Stack'));
-    const filteredCharacters = characters.filter(character => selectedCheckboxes.includes(character.name));
-    console.log(filteredCharacters)
-    
+
+    // const filteredCharacters = characters.filter(character => selectedCheckboxes.includes(character.name));
+    // console.log(filteredCharacters)
+
     this.setState(prevState => ({
-      // selectedCharacters: characters,
-      selectedCharacters: filteredCharacters,
+      // selectedCharacters: filteredCharacters,
     }))
   };
 
@@ -103,19 +112,20 @@ class Character extends React.Component {
   fetchData = () => {
     console.log('fetch');
     // this.apiFetch(1);
-    this.getCharacterDataFromMarvelAPI('A-Bomb (HAS)')
-    this.getCharacterDataFromMarvelAPI('3-D Man')
+    this.getCharacterDataFromMarvelAPI('A-Bomb (HAS)');
+    this.getCharacterDataFromMarvelAPI('3-D Man');
+    this.getCharacterDataFromMarvelAPI('3-D Man');
   }
 
-  getCharacterDataFromMarvelAPI = (characterName) => {
+  getCharacterDataFromMarvelAPI = (characterName, name) => {
     // fetching the data for each character from the marvel api
     fetch(`https://gateway.marvel.com:443/v1/public/characters?name=${characterName}&limit=1&ts=1&apikey=e2deecaf6c770a3c085bbc7ed4b93986&hash=5f76c2f28fdd90fe55091d98e6de3f43`)
         .then((response) => response.json())
-        .then((character) => this.createCharacter(character));
+        .then((character) => this.createCharacter(character, name));
   }
 
   createCharacter = (cards1) => {
-    console.log('cards1=', cards1)
+    // console.log('cards1=', cards1)
 
     // cards1.forEach((character) => renderCharacterList.push(character));
 
@@ -131,9 +141,14 @@ class Character extends React.Component {
       storiesCount: cards1.data.results[0].stories.available,
     };
 
-    console.log('test2=', cards);
-    this.characters.push(cards);
-    console.log('this.test=', this.characters);
+    // console.log(this.character.includes(cards));
+
+    const abc = this.characters.map(characters => characters.name);  //todo this should be in the handle function to avoid prevent another call on the api
+    console.log(abc);
+    abc.includes(cards.name) ? console.log('a') : this.characters.push(cards)
+
+    // console.log('cards=', cards);
+    // console.log('this.characters=', this.characters);
     
     // const cards2 = cards1.data.results.map(character => ({
     //   name: character.name,
@@ -152,9 +167,18 @@ class Character extends React.Component {
     // card = card.push(cards2);
 
     this.setState(prevState => ({
-      // selectedCharacters: cards2,
+    //   // selectedCharacters: cards2,
       selectedCharacters: this.characters,
     }))
+    
+    // this.setState(prevState => ({
+    //   // selectedCharacters: filteredCharacters,
+    //   selectedCharacters: this.characters,
+    //   checkboxes: {
+    //     ...prevState.checkboxes,
+    //     [name]: !prevState.checkboxes[name]
+    //   }
+    // }));
 
     console.log('this.state.selectedCharacters=', this.state.selectedCharacters);
 
@@ -167,8 +191,7 @@ class Character extends React.Component {
           <h1 className='detail-text'>Character Details</h1>
           <CharacterSelection handleSubmit={this.handleFormSubmit} createCheckboxes={this.createCheckboxes()} />
         </div>
-          {/* <button onClick={this.fetchData(2)}>FETCH</button> */}
-          <button onClick={this.fetchData}>FETCH</button>
+          {/* <button onClick={this.fetchData}>FETCH</button> //test fetch button */}
           <CharacterRender card={this.state.selectedCharacters} />
       </div>
     )}

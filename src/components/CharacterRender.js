@@ -2,7 +2,7 @@ import React from 'react';
 import CharacterCards from './CharacterCards.js';
 
 const CharacterRender = (props) => {
-  console.log('props=', props);
+  // console.log('props=', props);
 
   // const cards = characters.map(character => {
 const cards = props.card.map(character => {
