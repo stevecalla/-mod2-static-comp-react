@@ -6,17 +6,18 @@ import CheckboxRender from "./CheckboxRender";
 import characters from '../data.js';
 import characterList from '../dataCharacters.js';
 
+import spin from './assets/spin.svg';
+
 import './Character.css';
 
+// lazy load to show loading component
 // import CharacterRender from './CharacterRender.js';
 // const CharacterRender = React.lazy(() => import('./CharacterRender.js'));
-
 const CharacterRender = React.lazy(() => {
-  return new Promise(resolve => setTimeout(resolve, .25 * 1000)).then(
+  return new Promise(resolve => setTimeout(resolve, .5 * 1000)).then(
     () => import("./CharacterRender")
   );
 });
-
 
 // const Character = () => {
 class Character extends Component {
@@ -103,7 +104,7 @@ class Character extends Component {
   };
 
   componentDidMount() {
-    const randomCount = 10;
+    const randomCount = 0;
     const randomNumbers = [];
     const randomCharacters = [];
 
@@ -112,12 +113,12 @@ class Character extends Component {
       // randomNumbers.push(Math.floor(Math.floor(Math.random()*characters.length))); //todo use static data
       randomNumbers.push(Math.floor(Math.floor(Math.random()*characterList.length))); //todo use api
     };
-    console.log(randomNumbers);
+    // console.log(randomNumbers);
 
     //use random numbers to create array of character names
     // randomNumbers.forEach((number) => randomCharacters.push(characters[number])); //todo use static data
     randomNumbers.forEach((number) => randomCharacters.push(characterList[number])); //todo use api
-    console.log(randomCharacters);
+    // console.log(randomCharacters);
 
     //submit character names to the api to get data and render
     randomCharacters.map(character => this.getCharacterDataFromMarvelAPI(character)) //todo use api
@@ -215,6 +216,22 @@ class Character extends Component {
 
   }
 
+  // timeout = () => {
+  //   console.log('Loading...');
+  //   <div className='load-icon-containter' id='loadIconContainter'>
+  //     <img 
+  //       className='load-icon' 
+  //       id='loadIcon' 
+  //       loading='lazy' 
+  //       src={spin} 
+  //       alt='loading characters animation'
+  //     ></img>
+  //   </div>
+  //   setTimeout(() => {
+  //     console.log('Hello, World!')
+  //   }, 1000);
+  // }
+
   render() {
     return (
       <div>
@@ -223,9 +240,30 @@ class Character extends Component {
           <CharacterSelection handleSubmit={this.handleFormSubmit} createCheckboxes={this.createCheckboxes()} />
         </div>
           {/* <button onClick={this.fetchData}>FETCH</button> //test fetch button */}
-          <Suspense minDuration={1000} fallback={<div>Loading...</div>}>
+          {/* <Suspense fallback={<div>Loading Characters...</div>}> */}
+          {/* <Suspense fallback={<div>Loading Characters... {this.timeout()}</div>}> */}
+
+          {/* <Suspense fallback={<div>{this.timeout()}</div>}>
             <CharacterRender card={this.state.selectedCharacters} />
-          </Suspense>
+          </Suspense> */}
+
+          {/* <Suspense fallback={<div>Loading...</div>}> */}
+
+          <Suspense fallback=
+            {
+              <div className='load-icon-containter' id='loadIconContainter'>
+                <img 
+                  className='load-icon' 
+                  id='loadIcon' 
+                  // loading='lazy' 
+                  src={spin} 
+                  alt='loading characters animation'
+                ></img>
+              </div>
+            }>
+            <CharacterRender card={this.state.selectedCharacters} />
+          </Suspense>         
+          {/* <img className='load-icon' id='loadIcon' loading='lazy' src={spin} width="25" height="25" alt='loading characters animation'></img> */}
       </div>
     )}
 }

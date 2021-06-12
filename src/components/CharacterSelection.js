@@ -21,6 +21,15 @@ const CharacterSelection = (props) => {
     return value ? '' : 'hidden';
   }
 
+  // function timeOut() {
+  //   setTimeout(() => {
+  //     setValue(prevValue => prevValue ? false : true)
+  //     console.log('Hello, World!')
+  //   }, 5000);
+  // }
+
+  // Component.wi
+
   return (
     <>
       <button 

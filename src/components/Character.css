@@ -151,3 +151,18 @@ button:hover {
 }
 
 /*------------- END CHECKBOX FORM ----------------- */
+
+/*------------- START LOAD ICON ----------------- */
+
+.load-icon-containter {
+  /* @include flexJustifyCenter; */
+  display: flex;
+  justify-content: center;
+}
+
+.load-icon {
+  height: 30vh;
+  width: 30vh;
+}
+
+/*------------- END LOAD ICON ----------------- */
