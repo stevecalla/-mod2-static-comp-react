@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { Component, Suspense } from 'react';
 
 import CharacterSelection from './CharacterSelection';
 import CheckboxRender from "./CheckboxRender";
-import CharacterRender from './CharacterRender.js';
 
 import characters from '../data.js';
 import characterList from '../dataCharacters.js';
 
 import './Character.css';
 
+// import CharacterRender from './CharacterRender.js';
+// const CharacterRender = React.lazy(() => import('./CharacterRender.js'));
+
+const CharacterRender = React.lazy(() => {
+  return new Promise(resolve => setTimeout(resolve, .25 * 1000)).then(
+    () => import("./CharacterRender")
+  );
+});
+
+
 // const Character = () => {
-class Character extends React.Component {
+class Character extends Component {
   constructor() {
     super();
     this.state = {
@@ -94,7 +103,7 @@ class Character extends React.Component {
   };
 
   componentDidMount() {
-    const randomCount = 2;
+    const randomCount = 10;
     const randomNumbers = [];
     const randomCharacters = [];
 
@@ -214,7 +223,9 @@ class Character extends React.Component {
           <CharacterSelection handleSubmit={this.handleFormSubmit} createCheckboxes={this.createCheckboxes()} />
         </div>
           {/* <button onClick={this.fetchData}>FETCH</button> //test fetch button */}
-          <CharacterRender card={this.state.selectedCharacters} />
+          <Suspense minDuration={1000} fallback={<div>Loading...</div>}>
+            <CharacterRender card={this.state.selectedCharacters} />
+          </Suspense>
       </div>
     )}
 }

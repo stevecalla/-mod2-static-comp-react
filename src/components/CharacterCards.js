@@ -13,7 +13,8 @@ const CharacterCards = (props) => {
         <div className='image-box'>
           {/* <img rel="preload" as='image' loading='lazy' className='container-image' src ={props.imageURL} alt={props.name}/> */}
           {/* <img rel="preload" as='image' loading='lazy' className='container-image' src="{props.imageURL}.{props.imageExtension}" alt={props.name}/> */}
-          <img rel="preload" as='image' loading='lazy' className='container-image' src={image} alt={props.name}/>        </div>
+          <img rel="preload" as='image' loading='lazy' className='container-image' src={image} alt={props.name}/>
+        </div>
         <h1 className='name-text'>{props.name}</h1>
         <p className='description-text'>{props.description}</p>
         <a className='text url-box' href={props.profileURL} target='_blank' rel="noreferrer" aria-label='Marvel profile for {props.name}'>Profile</a>
