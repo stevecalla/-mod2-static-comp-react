@@ -47,7 +47,13 @@ const CharacterSelection = (props) => {
             <input type="text" placeholder="Search All" className="search-input" id="searchInput" spellCheck='true' title='Searchbox'></input>
             <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
             <img className={`clear-icon ${hideToggle()}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
-          </div>
+        </div>
+        {/* <div className='search-bar'>
+            <img className='search-icon' loading='lazy' src={magnify} alt='Search icon'/>
+            <input type="text" placeholder="Starts With..." className="search-input" id="searchInput" spellCheck='true' title='Searchbox'></input>
+            <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
+            <img className={`clear-icon ${hideToggle()}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
+        </div> */}
           <fieldset className={`random-checkbox ${showToggle()}`} id='randomCheckboxWrapper'>
             <legend></legend>
             {/* <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters' checked={`random-checkbox ${checkedToggle}`}></input> */}

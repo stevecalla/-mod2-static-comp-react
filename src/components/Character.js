@@ -41,11 +41,18 @@ class Character extends Component {
   increaseCheckboxes = () => {
     this.num = this.num + 10;
     this.createCheckboxes(this.num);
+    this.test();
   }
 
   // createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //list all characters
   createCheckboxes = () => characterList.slice(0, this.num).map(option => this.createCheckbox(option)); //limited number of characters
-  // createCheckboxes = () => characterList.map(option => this.createCheckbox(option.startsWith('3-D'))); //list all characters
+  // createCheckboxes = () => characterList.filter(option => option.toUpperCase().startsWith('C')).map(option => this.createCheckbox(option)); //starts with
+
+  test = (option) => {
+    // console.log(characterList.slice(0, 10).map(option => option.toUpperCase.startsWith('A')))
+    console.log(characterList.slice(0, 10).map(option => option.toUpperCase().startsWith('A')))
+    console.log(characterList.filter(option => option.toUpperCase().startsWith('C')))
+  }
   
 
   createCheckbox = option => {
