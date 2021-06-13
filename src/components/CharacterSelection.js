@@ -65,7 +65,7 @@ const CharacterSelection = (props) => {
           <fieldset className='character-checkbox'>
             <legend></legend>
             <div id='populateCheckbox'>{props.createCheckboxes}</div>
-            {/* <a onClick={props.checkboxCount} id='load-more' href="#!">Load 10 More</a> */}
+            {/* <a onClick={props.checkboxCount} id='load-more' href="#load-more">Load 10 More</a> */}
             <button onClick={props.checkboxCount} id='load-more'>Load 10 More</button>
           </fieldset>
           <div>

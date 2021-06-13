@@ -25,6 +25,7 @@ class Character extends Component {
     super();
     this.state = {
       selectedCharacters: [],
+      num2: 4,
       checkboxes: characters.reduce(
         (options, option) => ({
           ...options,
@@ -35,18 +36,22 @@ class Character extends Component {
     }
     // console.log(characters);
     this.characters = [];
-    this.num = 3;
+    // this.num = 3;
     }
 
   increaseCheckboxes = () => {
-    this.num = this.num + 10;
-    this.createCheckboxes(this.num);
-    this.test();
+    // this.num = this.num + 10;
+    // this.test();
+    this.setState(prevState => ({
+      num2: this.state.num2 + 10,
+    }))
+    this.createCheckboxes(this.state.num2);
   }
 
   // createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //list all characters
-  createCheckboxes = () => characterList.slice(0, this.num).map(option => this.createCheckbox(option)); //limited number of characters
-  // createCheckboxes = () => characterList.filter(option => option.toUpperCase().startsWith('C')).map(option => this.createCheckbox(option)); //starts with
+  createCheckboxes = () => characterList.slice(0, this.state.num2).map(option => this.createCheckbox(option)); //limited number of characters
+  // createCheckboxes = () => characterList.slice(0, this.num).map(option => this.createCheckbox(option)); //limited number of characters
+  // createCheckboxes = () => characterList.filter(option => option.toUpperCase().startsWith('C')).slice(0, this.num).map(option => this.createCheckbox(option)); //starts with
 
   test = (option) => {
     // console.log(characterList.slice(0, 10).map(option => option.toUpperCase.startsWith('A')))
