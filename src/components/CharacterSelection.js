@@ -6,6 +6,7 @@ import clearXicon from './assets/clearXicon.png';
 
 // const SelectCharacters = ({ handleSubmit, createCheckboxes }) => {
 const CharacterSelection = (props) => {  
+  console.log(props)
   
   const [ value, setValue ] = useState(true);
 
@@ -27,9 +28,6 @@ const CharacterSelection = (props) => {
   //     console.log('Hello, World!')
   //   }, 5000);
   // }
-
-  // Component.wi
-
   return (
     <>
       <button 
@@ -42,7 +40,7 @@ const CharacterSelection = (props) => {
         <span className='arrow-down-emoji'>  ▼</span>
       </button>
       <div className={`arrow-up ${showToggle()}`} id='checkboxArrow'></div>
-        <form onSubmit={props.handleSubmit}  className={`checkbox-form ${showToggle()}`} id='checkboxMenu'>
+        <form onSubmit={props.handleSubmit} className={`checkbox-form ${showToggle()}`} id='checkboxMenu'>
 
         <div className='search-bar'>
             <img className='search-icon' loading='lazy' src={magnify} alt='Search icon'/>
@@ -61,6 +59,8 @@ const CharacterSelection = (props) => {
           <fieldset className='character-checkbox'>
             <legend></legend>
             <div id='populateCheckbox'>{props.createCheckboxes}</div>
+            {/* <a onClick={props.checkboxCount} id='load-more' href="#!">Load 10 More</a> */}
+            <button onClick={props.checkboxCount} id='load-more'>Load 10 More</button>
           </fieldset>
           <div>
             <button type="submit" className='submit-button' id="submitButton">Submit Form</button>

@@ -14,7 +14,7 @@ import './Character.css';
 // import CharacterRender from './CharacterRender.js';
 // const CharacterRender = React.lazy(() => import('./CharacterRender.js'));
 const CharacterRender = React.lazy(() => {
-  return new Promise(resolve => setTimeout(resolve, .5 * 1000)).then(
+  return new Promise(resolve => setTimeout(resolve, .01 * 1000)).then(
     () => import("./CharacterRender")
   );
 });
@@ -35,9 +35,18 @@ class Character extends Component {
     }
     // console.log(characters);
     this.characters = [];
+    this.num = 3;
     }
 
-  createCheckboxes = () => characterList.slice(0, 10).map(option => this.createCheckbox(option));
+  increaseCheckboxes = () => {
+    this.num = this.num + 10;
+    this.createCheckboxes(this.num);
+  }
+
+  // createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //list all characters
+  createCheckboxes = () => characterList.slice(0, this.num).map(option => this.createCheckbox(option)); //limited number of characters
+  // createCheckboxes = () => characterList.map(option => this.createCheckbox(option.startsWith('3-D'))); //list all characters
+  
 
   createCheckbox = option => {
     // console.log('t=', option);
@@ -237,7 +246,10 @@ class Character extends Component {
       <div>
         <div className='character-nav'>
           <h1 className='detail-text'>Character Details</h1>
-          <CharacterSelection handleSubmit={this.handleFormSubmit} createCheckboxes={this.createCheckboxes()} />
+          <CharacterSelection 
+            handleSubmit={this.handleFormSubmit}
+            createCheckboxes={this.createCheckboxes()}
+            checkboxCount={this.increaseCheckboxes}/>
         </div>
           {/* <button onClick={this.fetchData}>FETCH</button> //test fetch button */}
           {/* <Suspense fallback={<div>Loading Characters...</div>}> */}
