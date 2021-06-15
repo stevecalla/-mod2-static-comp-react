@@ -35,7 +35,8 @@ class Character extends Component {
           [option.name]: false,
         }),
         {}
-        ),
+      ),
+      testAbc: characterList,
     }
     // console.log(characters);
     this.characters = [];
@@ -52,8 +53,8 @@ class Character extends Component {
   }
 
   // createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //list all characters
-  createCheckboxes2 = () => characterList.slice(0, this.state.num2).map(option => this.createCheckbox(option)); //limited number of characters
-  createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //limited number of characters
+  // createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //uses static characterList; limited number of characters
+  createCheckboxes = () => this.state.testAbc.map(option => this.createCheckbox(option)); //uses dynamic characterList... limited number of characters
   // createCheckboxes = () => characterList.filter(option => option.toUpperCase().startsWith('C')).slice(0, this.num).map(option => this.createCheckbox(option)); //starts with
 
   test = (option) => {
@@ -74,6 +75,40 @@ class Character extends Component {
       />
     );
   }
+
+  handleChange = (event) => {
+    event.preventDefault();
+    let xyz = [];
+    const {name, value} = event.target;
+    console.log('p=', characterList.filter(option => option.toUpperCase().includes(this.state.searchBox.toUpperCase())));
+    // xyz = characterList.filter(option => option.toUpperCase().includes(this.state.searchBox.toUpperCase()));
+
+    xyz = characterList.filter(option => option.toUpperCase().includes(event.target.value.toUpperCase()));
+
+    // this.setState({
+    //   [name]: value,
+    //   testAbc: xyz,
+    // }, this.testCba(xyz))
+
+    this.setState({
+      [name]: value,
+      testAbc: xyz,
+    }, this.testCba)
+
+    if(event.target.value === '') {
+      console.log('value = blank');
+    } // display x clear icon if not blank... tie x icon to resetting value to blank
+
+    console.log('q=', xyz.map(option => this.createCheckbox(option))); //limited number of characters
+}
+
+testCba = (test) => {
+  console.log('v=', 'hmmm2');
+
+  // test.map(option => this.createCheckbox(option));
+
+  this.state.testAbc.map(option => this.createCheckbox(option));
+}
 
   handleCheckboxChange = (event) => {
     // const filteredCharacters = characters.filter(character => character.name === event.target.name); //todo comment out to use api
@@ -254,24 +289,6 @@ class Character extends Component {
   //     console.log('Hello, World!')
   //   }, 1000);
   // }
-
-  handleChange = (event) => {
-    event.preventDefault();
-    const {name, value} = event.target;
-    this.setState({
-        [name]: value,
-    })
-    // console.log(this.state.searchBox);
-
-
-  characterList.slice(0, this.state.num2).map(option => this.createCheckbox(option)); //limited number of characters
-
-    console.log('p=', characterList.filter(option => option.toUpperCase().includes(this.state.searchBox.toUpperCase())));
-    // this.createCheckboxes()
-    const xyz = characterList.filter(option => option.toUpperCase().includes(this.state.searchBox.toUpperCase()));
-    // .map(option => this.createCheckbox(option));
-    console.log('q=', xyz.map(option => this.createCheckbox(option))); //limited number of characters
-}
 
   render() {
     return (
