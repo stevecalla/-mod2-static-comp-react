@@ -1,6 +1,5 @@
 import React, { Component, Suspense } from 'react';
 
-import CharacterSelection from './CharacterSelection';
 import CheckboxRender from "./CheckboxRender";
 
 import characters from '../data.js';
@@ -9,6 +8,9 @@ import characterList from '../dataCharacters.js';
 import spin from './assets/spin.svg';
 
 import './Character.css';
+
+// import CharacterSelection from './CharacterSelection';
+const CharacterSelection = React.lazy(() => import('./CharacterSelection.js'));
 
 // lazy load to show loading component
 // import CharacterRender from './CharacterRender.js';
@@ -26,6 +28,7 @@ class Character extends Component {
     this.state = {
       selectedCharacters: [],
       num2: 4,
+      searchBox: '',
       checkboxes: characters.reduce(
         (options, option) => ({
           ...options,
@@ -49,8 +52,8 @@ class Character extends Component {
   }
 
   // createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //list all characters
-  createCheckboxes = () => characterList.slice(0, this.state.num2).map(option => this.createCheckbox(option)); //limited number of characters
-  // createCheckboxes = () => characterList.slice(0, this.num).map(option => this.createCheckbox(option)); //limited number of characters
+  createCheckboxes2 = () => characterList.slice(0, this.state.num2).map(option => this.createCheckbox(option)); //limited number of characters
+  createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //limited number of characters
   // createCheckboxes = () => characterList.filter(option => option.toUpperCase().startsWith('C')).slice(0, this.num).map(option => this.createCheckbox(option)); //starts with
 
   test = (option) => {
@@ -59,7 +62,6 @@ class Character extends Component {
     console.log(characterList.filter(option => option.toUpperCase().startsWith('C')))
   }
   
-
   createCheckbox = option => {
     // console.log('t=', option);
     return (
@@ -253,15 +255,38 @@ class Character extends Component {
   //   }, 1000);
   // }
 
+  handleChange = (event) => {
+    event.preventDefault();
+    const {name, value} = event.target;
+    this.setState({
+        [name]: value,
+    })
+    // console.log(this.state.searchBox);
+
+
+  characterList.slice(0, this.state.num2).map(option => this.createCheckbox(option)); //limited number of characters
+
+    console.log('p=', characterList.filter(option => option.toUpperCase().includes(this.state.searchBox.toUpperCase())));
+    // this.createCheckboxes()
+    const xyz = characterList.filter(option => option.toUpperCase().includes(this.state.searchBox.toUpperCase()));
+    // .map(option => this.createCheckbox(option));
+    console.log('q=', xyz.map(option => this.createCheckbox(option))); //limited number of characters
+}
+
   render() {
     return (
       <div>
         <div className='character-nav'>
           <h1 className='detail-text'>Character Details</h1>
-          <CharacterSelection 
-            handleSubmit={this.handleFormSubmit}
-            createCheckboxes={this.createCheckboxes()}
-            checkboxCount={this.increaseCheckboxes}/>
+          <Suspense fallback={<div>Loading...</div>}>
+            <CharacterSelection 
+              handleSubmit={this.handleFormSubmit}
+              createCheckboxes={this.createCheckboxes()}
+              checkboxCount={this.increaseCheckboxes}
+              handleChange={this.handleChange}
+              searchBox={this.state.searchBox}
+              />
+          </Suspense>
         </div>
           {/* <button onClick={this.fetchData}>FETCH</button> //test fetch button */}
           {/* <Suspense fallback={<div>Loading Characters...</div>}> */}
@@ -279,7 +304,7 @@ class Character extends Component {
                 <img 
                   className='load-icon' 
                   id='loadIcon' 
-                  // loading='lazy' 
+                  loading='lazy' 
                   src={spin} 
                   alt='loading characters animation'
                 ></img>
