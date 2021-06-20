@@ -6,7 +6,7 @@ import clearXicon from './assets/clearXicon.png';
 
 // const SelectCharacters = ({ handleSubmit, createCheckboxes }) => {
 const CharacterSelection = (props) => {  
-  console.log(props)
+  console.log('characterSelectionProps=', props)
   
   const [ value, setValue ] = useState(true);
 
@@ -20,6 +20,10 @@ const CharacterSelection = (props) => {
 
   function hideToggle() {
     return value ? '' : 'hidden';
+  }
+
+  function test() {
+    console.log('test');
   }
 
   // function timeOut() {
@@ -51,20 +55,33 @@ const CharacterSelection = (props) => {
               id="searchInput" 
               spellCheck='true' 
               title='Searchbox'
+              value={props.searchAllInput} 
+              name="searchAllInput" 
+              onChange={props.handleSearchAllChange}> 
+            </input>
+            <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
+            {/* <img className={`clear-icon ${hideToggle()}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/> */}
+            <img className={`clear-icon ${showToggle()}`} onClick={props.clearSearchBoxInput} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
+        </div>
+{/* 
+        <div className='search-bar' loading='lazy' >
+            <img className='search-icon' loading='lazy' src={magnify} alt='Search icon'/>
+            <input 
+              type="text" 
+              placeholder="Starts With..."
+              className="search-input" 
+              id="searchInput" 
+              spellCheck='true' 
+              title='Searchbox'
 
               value={props.searchBox} 
-              name="searchBox" 
+              name="searchAllInput" 
               onChange={props.handleChange}> 
             </input>
             <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
             <img className={`clear-icon ${hideToggle()}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
-        </div>
-        {/* <div className='search-bar'>
-            <img className='search-icon' loading='lazy' src={magnify} alt='Search icon'/>
-            <input type="text" placeholder="Starts With..." className="search-input" id="searchInput" spellCheck='true' title='Searchbox'></input>
-            <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
-            <img className={`clear-icon ${hideToggle()}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
         </div> */}
+
           <fieldset className={`random-checkbox ${showToggle()}`} id='randomCheckboxWrapper' loading='lazy' >
             <legend></legend>
             {/* <input type='checkbox' id='randomCheckbox' value='Get 8 Random Characters' checked={`random-checkbox ${checkedToggle}`}></input> */}

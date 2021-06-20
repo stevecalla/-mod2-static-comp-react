@@ -1,20 +1,12 @@
 import React, { Component, Suspense } from 'react';
-
 import CheckboxRender from "./CheckboxRender";
-
 import characters from '../data.js';
 import characterList from '../dataCharacters.js';
-
 import spin from './assets/spin.svg';
-
 import './Character.css';
-
 // import CharacterSelection from './CharacterSelection';
 const CharacterSelection = React.lazy(() => import('./CharacterSelection.js'));
-
-// lazy load to show loading component
 // import CharacterRender from './CharacterRender.js';
-// const CharacterRender = React.lazy(() => import('./CharacterRender.js'));
 const CharacterRender = React.lazy(() => {
   return new Promise(resolve => setTimeout(resolve, .01 * 1000)).then(
     () => import("./CharacterRender")
@@ -27,8 +19,10 @@ class Character extends Component {
     super();
     this.state = {
       selectedCharacters: [],
+      renderCharacters: characterList,
       num2: 4,
-      searchBox: '',
+      searchAllInput: '',
+      // searchBoxValue: "",
       checkboxes: characters.reduce(
         (options, option) => ({
           ...options,
@@ -36,25 +30,15 @@ class Character extends Component {
         }),
         {}
       ),
-      testAbc: characterList,
     }
     // console.log(characters);
     this.characters = [];
     // this.num = 3;
     }
 
-  increaseCheckboxes = () => {
-    // this.num = this.num + 10;
-    // this.test();
-    this.setState(prevState => ({
-      num2: this.state.num2 + 10,
-    }))
-    this.createCheckboxes(this.state.num2);
-  }
-
   // createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //list all characters
   // createCheckboxes = () => characterList.map(option => this.createCheckbox(option)); //uses static characterList; limited number of characters
-  createCheckboxes = () => this.state.testAbc.map(option => this.createCheckbox(option)); //uses dynamic characterList... limited number of characters
+  createCheckboxes = () => this.state.renderCharacters.map(option => this.createCheckbox(option)); //uses dynamic characterList... limited number of characters
   // createCheckboxes = () => characterList.filter(option => option.toUpperCase().startsWith('C')).slice(0, this.num).map(option => this.createCheckbox(option)); //starts with
 
   test = (option) => {
@@ -76,39 +60,61 @@ class Character extends Component {
     );
   }
 
-  handleChange = (event) => {
+  increaseCheckboxes = () => {
+    // this.num = this.num + 10;
+    // this.test();
+    this.setState(prevState => ({
+      num2: this.state.num2 + 10,
+    }))
+    this.createCheckboxes(this.state.num2);
+  }
+
+  handleSearchAllChange = (event) => {
     event.preventDefault();
-    let xyz = [];
+    let searchAllList = [];
+
+    // #1) gather input value
     const {name, value} = event.target;
-    console.log('p=', characterList.filter(option => option.toUpperCase().includes(this.state.searchBox.toUpperCase())));
-    // xyz = characterList.filter(option => option.toUpperCase().includes(this.state.searchBox.toUpperCase()));
 
-    xyz = characterList.filter(option => option.toUpperCase().includes(event.target.value.toUpperCase()));
+    // #2) filter characterList to create a list of characters based on search input 
+    searchAllList = characterList.filter(option => option.toUpperCase().includes(event.target.value.toUpperCase()));
+    console.log('p=', characterList.filter(option => option.toUpperCase().includes(this.state.searchAllInput.toUpperCase())));
+    // searchAllList = characterList.filter(option => option.toUpperCase().includes(this.state.searchAllInput.toUpperCase()));
 
-    // this.setState({
-    //   [name]: value,
-    //   testAbc: xyz,
-    // }, this.testCba(xyz))
-
+    // #3) set state for the renderCharacter list based on the searchAll input, use "this..." callback function to keep checkbox list in synch
     this.setState({
       [name]: value,
-      testAbc: xyz,
-    }, this.testCba)
+      renderCharacters: searchAllList,
+    }, this.changeCheckboxList)
 
+    // #4) TODO: Display/Don't Display clear icon
     if(event.target.value === '') {
       console.log('value = blank');
     } // display x clear icon if not blank... tie x icon to resetting value to blank
 
-    console.log('q=', xyz.map(option => this.createCheckbox(option))); //limited number of characters
-}
+    console.log('q=', searchAllList.map(option => this.createCheckbox(option)));
 
-testCba = (test) => {
-  console.log('v=', 'hmmm2');
+    // #5) TODO: Create clear icon functionality DONE see clearSearchBoxInput function
+  }
 
-  // test.map(option => this.createCheckbox(option));
+  changeCheckboxList = () => {
+    this.state.renderCharacters.map(option => this.createCheckbox(option));
+  }
 
-  this.state.testAbc.map(option => this.createCheckbox(option));
-}
+  clearSearchBoxInput = (event) => {
+    console.log('clear');
+    this.setState({
+      searchAllInput: '',
+      renderCharacters: characterList,
+    });
+
+    // this.setState({
+    //   // [name]: value,
+    //   renderCharacters: characterList,
+    // }, this.changeCheckboxList)
+
+    // console.log('searchAllInput=', this.state.searchAllInput);
+  }
 
   handleCheckboxChange = (event) => {
     // const filteredCharacters = characters.filter(character => character.name === event.target.name); //todo comment out to use api
@@ -152,7 +158,6 @@ testCba = (test) => {
     //use data.js
     // const filteredCharacters = characters.filter(character => character.name === 'Aaron Stack');
     // const filteredCharacters = characters.filter(character => character.name.includes('Aaron Stack'));
-
     // const filteredCharacters = characters.filter(character => selectedCheckboxes.includes(character.name));
     // console.log(filteredCharacters)
 
@@ -188,37 +193,20 @@ testCba = (test) => {
     // <ApiFetch />
   }
 
-  // apiFetch = (personId) => {
-  //   fetch(`https://swapi.dev/api/people/${personId}/`)
-  //   // .then(response => console.log(response))
-  //   .then(response => response.json())
-  //   .then(data => console.log(data, data.name, data.birth_year, data.films[0]))
-  //   // console.log(response)
-  //   // .then(data => this.setState({
-  //   //   character: data,
-  //   // }))
-  // }
-  
   fetchData = () => {
     console.log('fetch');
-    // this.apiFetch(1);
     this.getCharacterDataFromMarvelAPI('A-Bomb (HAS)');
     this.getCharacterDataFromMarvelAPI('3-D Man');
     this.getCharacterDataFromMarvelAPI('3-D Man');
   }
 
   getCharacterDataFromMarvelAPI = (characterName, name) => {
-    // fetching the data for each character from the marvel api
     fetch(`https://gateway.marvel.com:443/v1/public/characters?name=${characterName}&limit=1&ts=1&apikey=e2deecaf6c770a3c085bbc7ed4b93986&hash=5f76c2f28fdd90fe55091d98e6de3f43`)
         .then((response) => response.json())
         .then((character) => this.createCharacter(character, name));
   }
 
   createCharacter = (cards1) => {
-    // console.log('cards1=', cards1)
-
-    // cards1.forEach((character) => renderCharacterList.push(character));
-
     const cards = {
       name: cards1.data.results[0].name,
       description: cards1.data.results[0].description,
@@ -231,64 +219,14 @@ testCba = (test) => {
       storiesCount: cards1.data.results[0].stories.available,
     };
 
-    // console.log(this.character.includes(cards));
-
     const abc = this.characters.map(characters => characters.name);  //todo this should be in the handle function to avoid prevent another call on the api
     console.log(abc);
     abc.includes(cards.name) ? console.log('a') : this.characters.push(cards)
-
-    // console.log('cards=', cards);
-    // console.log('this.characters=', this.characters);
-    
-    // const cards2 = cards1.data.results.map(character => ({
-    //   name: character.name,
-    //   description: character.description,
-    //   key: character.id,
-    //   imageURL: character.thumbnail.path,
-    //   imageExtension: character.thumbnail.extension,
-    //   profileURL: character.urls[0].url,
-    //   comicsURL: character.urls[1].url,
-    //   comicsCount: character.comics.available,
-    //   storiesCount: character.stories.available,
-    // }));
-    // console.log('a=', cards2);
-
-    // let card = [];
-    // card = card.push(cards2);
-
     this.setState(prevState => ({
-    //   // selectedCharacters: cards2,
       selectedCharacters: this.characters,
     }))
-    
-    // this.setState(prevState => ({
-    //   // selectedCharacters: filteredCharacters,
-    //   selectedCharacters: this.characters,
-    //   checkboxes: {
-    //     ...prevState.checkboxes,
-    //     [name]: !prevState.checkboxes[name]
-    //   }
-    // }));
-
     console.log('this.state.selectedCharacters=', this.state.selectedCharacters);
-
   }
-
-  // timeout = () => {
-  //   console.log('Loading...');
-  //   <div className='load-icon-containter' id='loadIconContainter'>
-  //     <img 
-  //       className='load-icon' 
-  //       id='loadIcon' 
-  //       loading='lazy' 
-  //       src={spin} 
-  //       alt='loading characters animation'
-  //     ></img>
-  //   </div>
-  //   setTimeout(() => {
-  //     console.log('Hello, World!')
-  //   }, 1000);
-  // }
 
   render() {
     return (
@@ -300,21 +238,14 @@ testCba = (test) => {
               handleSubmit={this.handleFormSubmit}
               createCheckboxes={this.createCheckboxes()}
               checkboxCount={this.increaseCheckboxes}
-              handleChange={this.handleChange}
-              searchBox={this.state.searchBox}
+              handleSearchAllChange={this.handleSearchAllChange}
+              searchAllInput={this.state.searchAllInput}
+              clearSearchBoxInput={this.clearSearchBoxInput}
               />
           </Suspense>
         </div>
           {/* <button onClick={this.fetchData}>FETCH</button> //test fetch button */}
-          {/* <Suspense fallback={<div>Loading Characters...</div>}> */}
-          {/* <Suspense fallback={<div>Loading Characters... {this.timeout()}</div>}> */}
-
-          {/* <Suspense fallback={<div>{this.timeout()}</div>}>
-            <CharacterRender card={this.state.selectedCharacters} />
-          </Suspense> */}
-
           {/* <Suspense fallback={<div>Loading...</div>}> */}
-
           <Suspense fallback=
             {
               <div className='load-icon-containter' id='loadIconContainter'>
