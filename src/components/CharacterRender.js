@@ -17,7 +17,7 @@ const cards = props.card.map(character => {
         comicsURL={character.comicsURL}
         comicsCount={character.comicsCount}
         storiesCount={character.storiesCount}
-        testChange={character.testChange}
+        // testChange={character.testChange}
       />
     )
   })

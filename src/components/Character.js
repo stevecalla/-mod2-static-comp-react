@@ -22,6 +22,7 @@ class Character extends Component {
       renderCharacters: characterList,
       num2: 4,
       searchAllInput: '',
+      clearAllIconDisplay: false,
       // searchBoxValue: "",
       checkboxes: characters.reduce(
         (options, option) => ({
@@ -85,9 +86,17 @@ class Character extends Component {
     this.setState({
       [name]: value,
       renderCharacters: searchAllList,
-    }, this.changeCheckboxList)
+    }, this.toggleClearSearchInputIcon)
+
+    console.log('#0.1=', this.state.searchAllInput, this.state.clearAllIconDisplay);
+
+    // this.setState({
+    //   [name]: value,
+    //   renderCharacters: searchAllList,
+    // }, this.changeCheckboxList)
 
     // #4) TODO: Display/Don't Display clear icon
+    // this.toggleClearSearchInputIcon();
     if(event.target.value === '') {
       console.log('value = blank');
     } // display x clear icon if not blank... tie x icon to resetting value to blank
@@ -95,6 +104,23 @@ class Character extends Component {
     console.log('q=', searchAllList.map(option => this.createCheckbox(option)));
 
     // #5) TODO: Create clear icon functionality DONE see clearSearchBoxInput function
+  }
+
+  toggleClearSearchInputIcon() {
+    console.log('toggleClearSearchIconInput')
+    console.log('#0.2=', this.state.searchAllInput, this.state.clearAllIconDisplay);
+    if (this.state.searchAllInput === '') {
+      console.log('#1=', this.state.searchAllInput, this.state.clearAllIconDisplay);
+      this.setState({
+        clearAllIconDisplay: false,
+      });
+      console.log('#2=', this.state.searchAllInput, this.state.clearAllIconDisplay);
+    } else {
+      this.setState({
+        clearAllIconDisplay: true,
+      });
+      console.log('#3=', this.state.searchAllInput, this.state.clearAllIconDisplay);
+    }
   }
 
   changeCheckboxList = () => {
@@ -106,6 +132,7 @@ class Character extends Component {
     this.setState({
       searchAllInput: '',
       renderCharacters: characterList,
+      clearAllIconDisplay: false,
     });
 
     // this.setState({
@@ -241,6 +268,7 @@ class Character extends Component {
               handleSearchAllChange={this.handleSearchAllChange}
               searchAllInput={this.state.searchAllInput}
               clearSearchBoxInput={this.clearSearchBoxInput}
+              clearAllIconDisplay={this.state.clearAllIconDisplay}
               />
           </Suspense>
         </div>

@@ -7,6 +7,7 @@ import clearXicon from './assets/clearXicon.png';
 // const SelectCharacters = ({ handleSubmit, createCheckboxes }) => {
 const CharacterSelection = (props) => {  
   console.log('characterSelectionProps=', props)
+  console.log('clear=', props.clearAllIconDisplay)
   
   const [ value, setValue ] = useState(true);
 
@@ -20,6 +21,12 @@ const CharacterSelection = (props) => {
 
   function hideToggle() {
     return value ? '' : 'hidden';
+  }
+
+  function hideToggle2(value2) {
+    console.log('value2=', value2)
+    return value2 ? '' : 'hidden';
+    return value2 ? 'hidden' : '';
   }
 
   function test() {
@@ -61,7 +68,8 @@ const CharacterSelection = (props) => {
             </input>
             <label className='hidden' htmlFor='searchInput' aria-hidden='false'>Search box</label>
             {/* <img className={`clear-icon ${hideToggle()}`} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/> */}
-            <img className={`clear-icon ${showToggle()}`} onClick={props.clearSearchBoxInput} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
+            {/* <img className={`clear-icon ${showToggle()}`} onClick={props.clearSearchBoxInput} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/> */}
+            <img className={`clear-icon ${hideToggle2(props.clearAllIconDisplay)}`} onClick={props.clearSearchBoxInput} loading='lazy' id='clearIcon' src={clearXicon} alt='Clear icon htmlFor search box'/>
         </div>
 {/* 
         <div className='search-bar' loading='lazy' >
